@@ -2,7 +2,7 @@ import warnings
 from PIL import Image
 import joblib
 import numpy as np
-warnings.filterwarnings("ignore", message="Trying to unpickle estimator")
+warnings.filterwarnings("ignore", message='UserWarning: X does not have valid feature names, but RandomForestClassifier was fitted with feature names"X does not have valid feature names, but"')
 # Loading the processed last frame form Desktop
 img = Image.open("lastframe.jpg")
 
