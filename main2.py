@@ -1,18 +1,29 @@
 import cv2
 import numpy as np
-import subprocess
 import time
+import subprocess
+import Jetson.GPIO as GPIO
 
-# initializing Webcam
+# For initializing PiCamera
 camera = cv2.VideoCapture(0)
-camera.set(3, 640)  # Set width
-camera.set(4, 480)  # Set height
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+# Setting up GPIO for servo control and Lumos/Nox
+SERVO_PIN = 33  # Change this to the GPIO pin connected to the servo
+GPIO_PIN_LUMOS = 32  # GPIO pin for Lumos
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(SERVO_PIN, GPIO.OUT)
+GPIO.setup(GPIO_PIN_LUMOS, GPIO.OUT)
+servo_pwm = GPIO.PWM(SERVO_PIN, 50)  # PWM frequency 50Hz
+servo_pwm.start(0)  # Initial duty cycle
+
 # Define parameters for the required blob
 params = cv2.SimpleBlobDetector_Params()
 
 # setting the thresholds
-params.minThreshold = 100
-params.maxThreshold = 200
+params.minThreshold = 150
+params.maxThreshold = 250
 
 # filter by color
 params.filterByColor = 1
@@ -20,11 +31,11 @@ params.blobColor = 255
 
 # filter by circularity
 params.filterByCircularity = 1
-params.minCircularity = 0.58
+params.minCircularity = 0.68
 
 # filter by area
 params.filterByArea = 1
-params.minArea = 20
+params.minArea = 30
 # params.maxArea = 1500
 
 # creating object for SimpleBlobDetector
@@ -52,16 +63,21 @@ def last_frame(img):
     if output.decode('utf-8')[1] == '2':
         print("Alohamora!!")
         time.sleep(1.5)
+        servo_pwm.ChangeDutyCycle(6.5)
         print("Box Opened!!")
     elif output.decode('utf-8')[1] == '3':
         print("Close!!")
+        servo_pwm.ChangeDutyCycle(3.5)
         time.sleep(1.5)
     elif output.decode('utf-8')[1] == '1':
         print("Lumos")
+        GPIO.output(GPIO_PIN_LUMOS, GPIO.HIGH)  # Set GPIO 32 to HIGH for Lumos
         time.sleep(1.5)
     elif output.decode('utf-8')[1] == '0':
         print("Nox")
+        GPIO.output(GPIO_PIN_LUMOS, GPIO.LOW)  # Set GPIO 32 to LOW for Nox
         time.sleep(1.5)
+
 time.sleep(0.1)
 
 while True:
@@ -123,6 +139,5 @@ while True:
     if key == ord('q'):
         break
 
-cv2.destroyAllWindows()
-# Close webcam
 camera.release()
+cv2.destroyAllWindows()
