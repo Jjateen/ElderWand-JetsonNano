@@ -15,8 +15,6 @@ GPIO_PIN_LUMOS = 32  # GPIO pin for Lumos
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(SERVO_PIN, GPIO.OUT)
 GPIO.setup(GPIO_PIN_LUMOS, GPIO.OUT)
-servo_pwm = GPIO.PWM(SERVO_PIN, 50)  # PWM frequency 50Hz
-servo_pwm.start(0)  # Initial duty cycle
 
 # Define parameters for the required blob
 params = cv2.SimpleBlobDetector_Params()
@@ -62,12 +60,14 @@ def last_frame(img):
     print("is the prediction")
     if output.decode('utf-8')[1] == '2':
         print("Alohamora!!")
+        GPIO.output(SERVO_PIN, GPIO.HIGH)  # Set GPIO 32 to LOW for Nox
+        print("Opened!!")
         time.sleep(1.5)
-        servo_pwm.ChangeDutyCycle(6.5)
-        print("Box Opened!!")
+        GPIO.output(SERVO_PIN, GPIO.LOW)
+        print("Closed!!")
     elif output.decode('utf-8')[1] == '3':
-        print("Close!!")
-        servo_pwm.ChangeDutyCycle(3.5)
+        print("Closed!!")
+        GPIO.output(SERVO_PIN, GPIO.LOW)
         time.sleep(1.5)
     elif output.decode('utf-8')[1] == '1':
         print("Lumos")
