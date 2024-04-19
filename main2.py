@@ -132,7 +132,7 @@ while True:
                 flag = 1
 
     cv2.namedWindow("video", cv2.WINDOW_NORMAL)
-    # cv2.resizeWindow("video", 640, 480)
+    cv2.resizeWindow("video", 640, 480)
     cv2.imshow("video", frame_with_keypoints)
     # cv2.imshow("video 2", frame)
     key = cv2.waitKey(1) & 0xFF
