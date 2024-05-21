@@ -113,5 +113,6 @@ We thank the developers and contributors of these libraries for their hard work.
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
+For a demonstration of the project in action, check out this [demo video](https://drive.google.com/file/d/1O4GGT3Goy68t8mfwshwCv-tpU9OQjDSr/view?usp=sharing).
 
 Thank you for using ElderWand-JetsonNano! If you have any questions or issues, please feel free to open an issue on the [GitHub repository](https://github.com/Jjateen/ElderWand-JetsonNano).
