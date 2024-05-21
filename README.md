@@ -1,4 +1,3 @@
-```markdown
 # ElderWand-JetsonNano
 
 ElderWand-JetsonNano is a machine learning project designed to run on the NVIDIA Jetson Nano platform. This project leverages several Python libraries and models to perform predictions based on trained data.
