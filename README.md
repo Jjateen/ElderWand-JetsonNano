@@ -47,6 +47,10 @@ ElderWand-JetsonNano/
 3. **Relays**: External devices connected via GPIO, controlling lighting and solenoid locks.
 4. **Servo Motors**: Connected to the solenoid lock, allowing the system to physically unlock based on gesture input.
 
+```
+SERVO_PIN = 33  # Change this to the GPIO pin connected to the servo
+GPIO_PIN_LUMOS = 32  # GPIO pin for Lumos
+```
 ### Image Processing Pipeline
 
 Once the `main.py` script is executed, the system initializes the camera and begins capturing frames. The frames are processed using the following steps:
