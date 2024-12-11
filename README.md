@@ -142,10 +142,6 @@ Upon execution, the system will start capturing live video, allowing you to trac
 - **Expanded Gesture Library**: Future iterations may include additional gestures and control mechanisms, integrating more complex AI models for enhanced accuracy.
 - **IoT Integration**: Expanding the project to include remote monitoring and control via IoT could further showcase the system’s capabilities in real-world automation scenarios.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
 ## Acknowledgements
 
 Special thanks to the developers and contributors of the libraries used in this project:
