@@ -46,6 +46,11 @@ ElderWand-JetsonNano/
 2. **USB Camera**: Captures live video feed for real-time gesture recognition.
 3. **Relays**: External devices connected via GPIO, controlling lighting and solenoid locks.
 4. **Servo Motors**: Connected to the solenoid lock, allowing the system to physically unlock based on gesture input.
+5. **Wand**: It can be a simple stick with reflective tape or an LED at its tip.
+
+<p align="center">
+<img src="setup.jpeg" alt="setup" width="60%"> <img src="wand.jpeg" alt="wand" width="20.98%">
+</p>
 
 ```
 SERVO_PIN = 33  # Change this to the GPIO pin connected to the servo
